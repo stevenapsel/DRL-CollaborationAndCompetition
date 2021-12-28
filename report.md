@@ -8,8 +8,6 @@
 
 ### Algorithm
 
-describe MADDPG, reference papers, etc
-
 For this project I implemented a variant of the Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm as described in the paper: [Multi-Agent Actor-Critic for Mixed
 Cooperative-Competitive Environments](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf)
 
@@ -28,9 +26,13 @@ We used DDPG in Project #2 when we were training a single agent in a continous a
 > is a natural setting for multi-agent language learning, as full centralization would not require the
 > development of discrete communication protocols.
 
-The extra information is only used by the critic during training.  The inference performed by the actor (to select actions) uses the same local observations as DDPG.
+The extra information is only used by the critic during training.  The inference performed by the actor (to select actions) uses the same local observations as DDPG.  
 
+The multi-agent decentralized actor, centralized critic approach can be seen in this figure from the paper:
 
+![](./multi-agent-actor-critic.png)
+
+See how more than one green arrow is input to critic?  That's the key extension from DDPG to MADDPG.
 
 #### Modfications
 
