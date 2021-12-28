@@ -15,6 +15,19 @@ The environment actually reports a stack of 3 consecutive observations (frames),
 
 The task is episodic, and in order to solve the environment, your agents must get an average score of +0.5 (over 100 consecutive episodes, after taking the maximum over both agents). Specifically,
 
-After each episode, we add up the rewards that each agent received (without discounting), to get a score for each agent. This yields 2 (potentially different) scores. We then take the maximum of these 2 scores.
-This yields a single score for each episode.
+- After each episode, we add up the rewards that each agent received (without discounting), to get a score for each agent. This yields 2 (potentially different) scores. We then take the maximum of these 2 scores.
+- This yields a single score for each episode.
+
 The environment is considered solved, when the average (over 100 episodes) of those scores is at least +0.5.
+
+## Unity
+For this project, Udacity provides a customized version of the Tennis environment that can be found on [the Unity ML-Agents GitHub page](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Examples.md).
+
+### Installation Requirements
+Udacity provides instructions for configuring the Unity environment locally.  For this project, I used the workspace provided by Udacity, so there were no installation requirements.
+
+## Instructions
+
+### Training an agent
+    
+Run `Tennis.ipynb` in the Udacity Online Workspace.  This will train the agent.  The notebook completed execution in ~30 minutes <b>without</b> GPU enabled.  
