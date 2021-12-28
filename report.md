@@ -10,6 +10,28 @@
 
 describe MADDPG, reference papers, etc
 
+For this project I implemented a variant of the Multi-Agent Deep Deterministic Policy Gradient (MADDPG) algorithm as described in the paper: [Multi-Agent Actor-Critic for Mixed
+Cooperative-Competitive Environments](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf)
+
+MADDPG is an extension of Deep Deterministic Policy Gradient (DDPG) algorithm described in the paper: [Continuous Control With Deep Reinforcement Learning](https://arxiv.org/abs/1509.02971)
+
+We used DDPG in Project #2 when we were training a single agent in a continous action space.  In project #3, we are training two agents that need to act in collaborative manner.  MADDPG is well-suited for this latter use case.  It extends DDPG by modifying the data available to the critic during training such that the critic can know the actions performed by <b>all</b> agents at each step:
+
+> We adopt the framework of centralized training with decentralized execution, allowing the policies
+> to use extra information to ease training, so long as this information is not used at test time. It is
+> unnatural to do this with Q-learning without making additional assumptions about the structure of the
+> environment, as the Q function generally cannot contain different information at training and test
+> time. Thus, we propose a simple extension of actor-critic policy gradient methods where the critic is
+> augmented with extra information about the policies of other agents, while the actor only has access
+> to local information. After training is completed, only the local actors are used at execution phase,
+> acting in a decentralized manner and equally applicable in cooperative and competitive settings. This
+> is a natural setting for multi-agent language learning, as full centralization would not require the
+> development of discrete communication protocols.
+
+The extra information is only used by the critic during training.  The inference performed by the actor (to select actions) uses the same local observations as DDPG.
+
+
+
 #### Modfications
 
 discuss any modifications and customizations from the papers, etc.
