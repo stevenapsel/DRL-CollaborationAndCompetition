@@ -47,7 +47,9 @@ For this project, we modified the decay, to put a limit on the number of episode
 
 ### Implementation
 
-The code used for this project is heavily based on the solution in the....
+The code used for this project is heavily based on the solution in the Udacity Deep Reinforcement Learning github repo, specifically the [ddpg-pedal solution](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal).
+
+The key components are as follows:
 
 #### model.py:
 <b> REVISE THIS </b>
