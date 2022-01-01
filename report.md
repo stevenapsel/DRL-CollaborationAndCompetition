@@ -36,7 +36,14 @@ See how more than one green arrow is input to critic?  That's the key extension 
 
 #### Modfications
 
-As with previously referenced DDPG implementation, the Agents explore actions beyond deterministic policy by adding in Ornstein-Uhlenbeck noise.  The amount of applied noise decreases as training progresses, so the policy explores less as more has been learned.  In this implementation, we can put a limit on the number of episodes for which exploration will be allowed.
+For project #2, I came upon a modification to the original DDPG at [OpenAI Spinning Up](https://spinningup.openai.com/en/latest/algorithms/ddpg.html)
+
+This implementation incorporated the following key features that yielded immediate improvements:
+* A learning step to better control the update of the networks relative to the amount of experiences collected
+* Gradient clipping in the critic network
+* A decay term to gradually reduce the introduction of noise as training progresses
+
+For this project, we modified the decay, to put a limit on the number of episodes for which exploration will be allowed.
 
 ### Implementation
 
