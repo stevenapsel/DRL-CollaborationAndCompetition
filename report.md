@@ -36,8 +36,7 @@ See how more than one green arrow is input to critic?  That's the key extension 
 
 #### Modfications
 
-discuss any modifications and customizations from the papers, etc.
-references
+As with previously referenced DDPG implementation, the Agents explore actions beyond deterministic policy by adding in Ornstein-Uhlenbeck noise.  The amount of applied noise decreases as training progresses, so the policy explores less as more has been learned.  In this implementation, we can put a limit on the number of episodes for which exploration will be allowed.
 
 ### Implementation
 
