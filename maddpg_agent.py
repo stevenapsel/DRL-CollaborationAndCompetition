@@ -18,11 +18,9 @@ LEARN_EVERY = 1         # learning timestep interval
 LEARN_NUM = 5           # number of learning passes
 GAMMA = 0.99            # discount factor
 TAU = 8e-3              # for soft update of target parameters
-OU_SIGMA = 0.2          # Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.15         # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 300        # episode to end the noise decay process
-EPS_FINAL = 0           # final value for epsilon after decay
+EPSILON_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
+EPSILON_EPISODE_END = 300        # number of episodes to decay noise from EPSILON_START to EPSILON_FINAL
+EPSILON_FINAL = 0           # final value for epsilon after decay
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -44,8 +42,8 @@ class Agent():
         self.action_size = action_size
         self.num_agents = num_agents
         self.seed = random.seed(random_seed)
-        self.eps = EPS_START
-        self.eps_decay = 1/(EPS_EP_END*LEARN_NUM)  # set decay rate based on epsilon end target
+        self.eps = EPSILON_START
+        self.eps_decay = 1/(EPSILON_EPISODE_END*LEARN_NUM)  # set decay rate based on epsilon end target
         self.timestep = 0
 
         # Actor Network (w/ Target Network)
@@ -113,8 +111,10 @@ class Agent():
         actions_next = self.actor_target(next_states)
         # Construct next actions vector relative to the agent
         if agent_number == 0:
+            # if this is the first agent learning, put its next actions first
             actions_next = torch.cat((actions_next, actions[:,2:]), dim=1)
         else:
+            # if this is the second agent learning, put its next actions second
             actions_next = torch.cat((actions[:,:2], actions_next), dim=1)
         # Compute Q targets for current states (y_i)
         Q_targets_next = self.critic_target(next_states, actions_next)
@@ -133,8 +133,10 @@ class Agent():
         actions_pred = self.actor_local(states)
         # Construct action prediction vector relative to each agent
         if agent_number == 0:
+            # if this is the first agent learning, put its predicted actions first
             actions_pred = torch.cat((actions_pred, actions[:,2:]), dim=1)
         else:
+            # if this is the second agent learning, put its predicted actions second
             actions_pred = torch.cat((actions[:,:2], actions_pred), dim=1)
         # Compute actor loss
         actor_loss = -self.critic_local(states, actions_pred).mean()
@@ -147,9 +149,9 @@ class Agent():
         self.soft_update(self.critic_local, self.critic_target, TAU)
         self.soft_update(self.actor_local, self.actor_target, TAU)
 
-        # update noise decay parameter
+        # update linear noise decay parameter without going below the minimum allowed final value
         self.eps -= self.eps_decay
-        self.eps = max(self.eps, EPS_FINAL)
+        self.eps = max(self.eps, EPSILON_FINAL)
         self.noise.reset()
 
     def soft_update(self, local_model, target_model, tau):
@@ -167,7 +169,7 @@ class Agent():
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
 
-    def __init__(self, size, seed, mu=0.0, theta=OU_THETA, sigma=OU_SIGMA):
+    def __init__(self, size, seed, mu=0.0, theta=0.15, sigma=0.2):
         """Initialize parameters and noise process.
         Params
         ======
