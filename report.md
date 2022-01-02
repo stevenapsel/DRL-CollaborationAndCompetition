@@ -52,8 +52,7 @@ The code used for this project is heavily based on the solution in the Udacity D
 The key components are as follows:
 
 #### model.py:
-<b> REVISE THIS </b>
-This file contains the network classes for the Actor and the Critic.  The networks use rectified non-linearity (ReLU activation) for all the hidden layers.  The final output layre of the actor used tanh activation to keep the actions bounded.  Both networks had hidden layers of 400 and 300.  Both networks apply Batch Normalization after the first hidden layer.  For the Critic, the actions aren't input to the network until the second hidden layer.  The implemenation is nearly an exact match of the description found in Section 7 (Experiment Details) of the Continuous Control paper.
+This file contains the network classes for the Actor and the Critic.  The networks use rectified non-linearity (ReLU activation) for all the hidden layers.  The final output layer of the actor used tanh activation to keep the actions bounded.  Both networks have default hidden layers of 256 and 128.  Both networks apply Batch Normalization after the first hidden layer.  For the Critic, the actions aren't input to the network until the second hidden layer.  The implemenation is nearly an exact match of the description found in Section 7 (Experiment Details) of the Continuous Control paper.
 
 #### maddpg_agent.py:
 describe all the methods
