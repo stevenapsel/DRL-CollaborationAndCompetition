@@ -43,6 +43,10 @@ This implementation incorporated the following key features that yielded immedia
 * Gradient clipping in the critic network
 * A decay term to gradually reduce the introduction of noise as training progresses
 
+The pseudo-code from Spinning Up is as follows:
+
+![alg](SpinningUp-Alg.png)
+
 For this project, we modified the decay, to put a limit on the number of episodes for which exploration will be allowed.
 
 ### Implementation
