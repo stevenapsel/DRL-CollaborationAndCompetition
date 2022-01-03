@@ -112,9 +112,10 @@ The goal is an average reward of at least +0.5 over 100 episodes, taking the bes
 ![results](results.png)
 
 ### Ideas for Future Work
-
+Here are a few ideas that could improve the training speed and/or performance of the agent.
 #### Hyperparameter Tuning
-
+The hyperparameters we've used here were fine for completing the project.  Are they optimal?  Probably not.  Some additional exploration could yield better results.
 #### Network Architecture
-
-what else????
+We used a fairly simple network.  Further exploration could look at varying the size (or number) of the hidden layers.
+#### Prioritized Experience Replay
+For this project, our replays were uniformly sampled.  What if we could choose sampled from a weighted distribution that gave preference to experiences that are more likely to have an larger impact on learning?  That is the idea behind [prioritized experience replay](https://arxiv.org/abs/1511.05952).
