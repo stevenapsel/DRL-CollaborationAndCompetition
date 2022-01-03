@@ -107,6 +107,10 @@ The model architecture for the neural network is described above in the model.py
 
 ### Plot of Rewards
 
+The goal is an average reward of at least +0.5 over 100 episodes, taking the best score from either agent for a given episode.  This was achieved in 581 episodes.  We achieved an average reward of 1.32 at ~950 episodes. 
+
+![results](results.png)
+
 ### Ideas for Future Work
 
 #### Hyperparameter Tuning
