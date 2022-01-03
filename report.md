@@ -76,7 +76,11 @@ This method returns actions, according to this single policy, for as many input 
 ##### Agent.step
 The training loop will choose actions for both agents and provide them to the enviroment.  With the environment's response, we have a full experience (states, actions, reward, next_states, done) for each agent that can be stored in the ReplayBuffer.  For every LEARN_EVERY calls to Agent.step, the method will do the following steps LEARN_NUMBER times: sample BATCH_SIZE samples from the ReplayBuffer and update the Actor and Critic networks by calling Agent.learn.
 ##### Agent.learn
-This method implements steps 12-15 from the algorithm pseudo-code.  One modification is gradient clipping applied to the critic as it is updating.  The updated local networks are used to gradually soft update (based on interpolation parameter TAU) the target networks.
+This method implements steps 12-15 from the algorithm pseudo-code.  One modification is gradient clipping applied to the critic as it is updating.  The updated local networks are used to gradually soft update (based on interpolation parameter TAU) the target networks.  
+<br>
+There are some modifications specific to MADDPG worth noting:
+- We modify the computation of predicted next actions used for updating the critic.  The critic takes all the actions as input, but we only wish to include predicted actions for the specific agent being trained (the other agent's actions can come from the input experience).
+- We modify the computation of predicted current actions used for updating the actor.  Again, the critic takes all actions as input, so we only want to include predicted actions for the specific agent being trained.
 ##### Agent.soft_update
 Allows the target networks to slowly track the parameters of the learned newtorks based on the interpolation factor TAU.  Makes the learn process much more stable.
 
