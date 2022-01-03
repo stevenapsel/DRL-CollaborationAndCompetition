@@ -96,14 +96,12 @@ LR_ACTOR = 1e-3         # learning rate of the actor
 LR_CRITIC = 1e-3        # learning rate of the critic
 WEIGHT_DECAY = 0        # L2 weight decay
 LEARN_EVERY = 1         # learning timestep interval
-LEARN_NUM = 1           # number of learning passes
+LEARN_NUM = 5           # number of learning passes
 GAMMA = 0.99            # discount factor
-TAU = 7e-2              # for soft update of target parameters
-OU_SIGMA = 0.2          # Ornstein-Uhlenbeck noise parameter, volatility
-OU_THETA = 0.12         # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
-EPS_START = 5.5         # initial value for epsilon in noise decay process in Agent.act()
-EPS_EP_END = 250        # episode to end the noise decay process
-EPS_FINAL = 0           # final value for epsilon after decay
+TAU = 8e-3              # for soft update of target parameters
+EPSILON_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
+EPSILON_EPISODE_END = 300        # number of episodes to decay noise from EPSILON_START to EPSILON_FINAL
+EPSILON_FINAL = 0           # final value for epsilon after decay
 ```
 The model architecture for the neural network is described above in the model.py section.
 
