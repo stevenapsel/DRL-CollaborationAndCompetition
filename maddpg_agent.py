@@ -74,7 +74,9 @@ class Agent():
                     self.learn(experiences, GAMMA, agent_number)
 
     def act(self, states, add_noise):
-        """Returns actions for both agents as per current policy, given their respective states."""
+        """Returns actions for each set of input states per current policy."""
+        # NOTE: for this project, we are only passing in the state for a SINGLE agent.
+        # This call will be made separately for each agent.
         states = torch.from_numpy(states).float().to(device)
         actions = np.zeros((self.num_agents, self.action_size))
         self.actor_local.eval()
