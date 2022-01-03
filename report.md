@@ -32,7 +32,7 @@ The multi-agent decentralized actor, centralized critic approach can be seen in 
 
 ![](./multi-agent-actor-critic.png)
 
-See how more than one green arrow is input to critic?  That's the key extension from DDPG to MADDPG.
+See how more than one green arrow is input to each critic?  That's the <b>key</b> extension going from DDPG to MADDPG (and from project #2 to #3).
 
 #### Modfications
 
